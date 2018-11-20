@@ -8,7 +8,22 @@ use lvblog\Models\Noticia;
 
 class HomeController extends Controller
 {
-    //
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth')
+                ->except('Index');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function Index()
     {
         $noticias = Noticia::paginate(10);
@@ -17,4 +32,5 @@ class HomeController extends Controller
             'noticias' => $noticias
         ]);
     }
+
 }
