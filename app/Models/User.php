@@ -1,6 +1,6 @@
 <?php
 
-namespace lvblog;
+namespace lvblog\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -16,7 +16,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'email',
+        'password',
+        'username',
+        'avatar'
     ];
 
     /**
@@ -27,4 +31,10 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function noticias()
+    {
+        return $this->hasMany(Noticia::class)
+                        ->latest();
+    }
 }

@@ -12,8 +12,17 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UsersTableSeeder::class);
-        factory(lvblog\Models\Noticia::class)
-        	->times(30)
-        	->create();
+        // Crear los usuarios
+        $users = factory(lvblog\Models\User::class)
+                    ->times(50)
+                    ->create();
+        // Crear noticias asociadas a un usuario
+        $users->each(function(lvblog\Models\User $user){
+            factory(lvblog\Models\Noticia::class)
+                    ->times(30)
+                    ->create([
+                        'user_id' => $user->id,
+                    ]);
+        });
     }
 }

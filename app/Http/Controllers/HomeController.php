@@ -26,7 +26,7 @@ class HomeController extends Controller
      */
     public function Index()
     {
-        $noticias = Noticia::paginate(10);
+        $noticias = Noticia::latest()->paginate(10);
 
         return view('home.index', [
             'noticias' => $noticias

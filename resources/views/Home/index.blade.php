@@ -23,6 +23,7 @@
         </div>
     </div>
 </div>
+<hr>
 
 <div class="row">
     @forelse ($noticias as $noticia)
@@ -30,12 +31,17 @@
         <div class="card mb-3">
             <img class="card-img-top" src="{{ $noticia->imagen }}" alt="Card image cap">
             <div class="card-body">
+                <p class="text-muted">
+                    Posteado por: <a href="#">{{ $noticia->user->username }}</a>
+                </p>
                 <h5 class="card-title">{{ $noticia->titulo }}</h5>
                 <p class="card-text">{{ $noticia->cuerpo }}</p>
-                <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small>
-                </p> -->
-                <p class="text-right"><a href="{{ route('noticia.detalle', $noticia->id) }}" class="text-right">Leer
-                        más</a></p>
+                <p class="card-text">
+                    <small class="text-muted">Posteado el: {{ $noticia->created_at }}</small>
+                </p>
+                <p class="float-right">
+                    <a href="{{ route('noticia.detalle', $noticia->id) }}" class="text-right">Leer más</a>
+                </p>
             </div>
         </div>
     </div>

@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => lvblog\User::class,
+            'model' => lvblog\Models\User::class,
         ],
 
         // 'users' => [

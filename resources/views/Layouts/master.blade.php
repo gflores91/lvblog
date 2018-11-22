@@ -29,10 +29,10 @@
         <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item {{ url()->current() == route('home.index') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ url()->current() == route('home.index') }}">Inicio <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{{ route('home.index') }}">Inicio <span class="sr-only">(current)</span></a>
                 </li>
                 @if(auth()->check())
-                <li class="nav-item {{ url('noticia.index') ? 'active' : '' }}">
+                <li class="nav-item {{ url()->current() == route('noticia.index') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('noticia.index') }}">Noticias <span class="sr-only">(current)</span></a>
                 </li>
                 @endif

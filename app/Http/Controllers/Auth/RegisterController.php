@@ -2,7 +2,7 @@
 
 namespace lvblog\Http\Controllers\Auth;
 
-use lvblog\User;
+use lvblog\Models\User;
 use lvblog\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -52,6 +52,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'username' => ['required', 'max:255', 'unique:users'],
         ]);
     }
 
@@ -59,7 +60,7 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \lvblog\User
+     * @return lvblog\Models\User
      */
     protected function create(array $data)
     {
@@ -67,6 +68,8 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'username' => $data['username'],
+            'avatar' => 'https://via.placeholder.com/150'
         ]);
     }
 }
