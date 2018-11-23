@@ -32,10 +32,10 @@
                         {{ $user->email }}
                     </p>
                 </p>
-                <form action="{{ route('user.followpost', $user->username) }}" method="post">
+                <form action="{{ route($isFollowing ? 'user.unfollowpost' : 'user.followpost', $user->username) }}" method="post">
                     @csrf
-                    <button type="submit" class="btn btn-primary float-right" {{ $isFollow ? 'disabled="disabled"' : '' }}>
-                        {{ $isFollow ? 'Siguiendo' : 'Seguir' }}
+                    <button type="submit" class="btn btn-primary float-right">
+                        {{ $isFollowing ? 'No seguir' : 'Seguir' }}
                     </button>
                 </form>
             </div>

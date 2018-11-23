@@ -17,12 +17,14 @@ class UserController extends Controller
     {
         $user = User::where('username', $username)->first();
         $noticias = $user->noticias()->paginate(10);
-        $isFollow = auth()->user()->follows->find($user->id);
+        $isFollowing = auth()->user()->isFollowing($user);
+
+
 
         return view('user.index', [
             'user' => $user,
             'noticias' => $noticias,
-            'isFollow' => $isFollow,
+            'isFollowing' => $isFollowing,
         ]);
     }
 
@@ -33,6 +35,19 @@ class UserController extends Controller
         $yo = $request->user();
 
         $yo->follows()->attach($user);
+
+        return redirect()->route('user.index', [
+            'username' => $username,
+        ]);
+    }
+
+    public function UnFollowPost($username, Request $request)
+    {
+        $user = User::where('username', $username)->first();
+
+        $yo = $request->user();
+
+        $yo->follows()->detach($user);
 
         return redirect()->route('user.index', [
             'username' => $username,
