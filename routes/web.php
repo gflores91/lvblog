@@ -21,5 +21,8 @@ Route::post('/noticia/crear', 'NoticiaController@CrearPost')->name('noticia.crea
 Route::get('/{username}', 'UserController@Index')->name('user.index');
 Route::post('/{username}/follow', 'UserController@FollowPost')->name('user.followpost');
 Route::post('/{username}/unfollow', 'UserController@UnFollowPost')->name('user.unfollowpost');
+Route::get('/auth/facebook', 'SocialProfileController@Facebook')->name('socialprofile.facebook');
+Route::get('/auth/facebook/callback', 'SocialProfilesController@Callback')->name('socialprofile.callback');
+Route::get('/auth/facebook/registrar', 'SocialProfileController@Registrar')->name('socialprofile.registrar');
 
 // Route::get('/home', 'HomeController@index')->name('home');
