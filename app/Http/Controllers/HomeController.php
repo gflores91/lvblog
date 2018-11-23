@@ -24,7 +24,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function Index()
     {
         $noticias = Noticia::latest()->paginate(10);
 
