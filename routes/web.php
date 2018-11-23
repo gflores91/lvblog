@@ -19,5 +19,6 @@ Route::get('/noticia/detalle/{id}', 'NoticiaController@Detalle')->name('noticia.
 Route::get('/noticia/crear', 'NoticiaController@Crear')->name('noticia.crear');
 Route::post('/noticia/crear', 'NoticiaController@CrearPost')->name('noticia.crearpost');
 Route::get('/{username}', 'UserController@Index')->name('user.index');
+Route::post('/{username}/follow', 'UserController@FollowPost')->name('user.followpost');
 
 // Route::get('/home', 'HomeController@index')->name('home');

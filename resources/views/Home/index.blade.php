@@ -32,7 +32,7 @@
             <img class="card-img-top" src="{{ $noticia->imagen }}" alt="Card image cap">
             <div class="card-body">
                 <p class="text-muted">
-                    Posteado por: <a href="#">{{ $noticia->user->username }}</a>
+                    Posteado por: <a href="{{ route('user.index', $noticia->user->username) }}">{{ $noticia->user->username }}</a>
                 </p>
                 <h5 class="card-title">{{ $noticia->titulo }}</h5>
                 <p class="card-text">{{ $noticia->cuerpo }}</p>

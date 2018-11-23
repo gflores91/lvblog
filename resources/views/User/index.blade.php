@@ -12,25 +12,34 @@
 </div>
 <hr>
 
-
 <div class="row">
-    <div class="col-md-12">
-        <p>
-            <strong>Nombre: </strong>
-            {{ $user->name }}
-        </p>
-        <p>
-            <strong>Email: </strong>
-            {{ $user->email }}
-        </p>
-        <p>
-            <strong>Username: </strong>
-            {{ $user->username }}
-        </p>
-        <p>
-            <strong>Avatar: </strong>
-            {{ $user->avatar }}
-        </p>
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 mt-2 text-center">
+        <div class="thumbnail">
+            <img src="{{ $user->avatar }}" alt="">
+        </div>
+    </div>
+
+    <div class="col-md-9">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    <p>
+                        <strong>Nombre: </strong>
+                        {{ $user->name }}
+                    </p>
+                    <p>
+                        <strong>Email: </strong>
+                        {{ $user->email }}
+                    </p>
+                </p>
+                <form action="{{ route('user.followpost', $user->username) }}" method="post">
+                    @csrf
+                    <button type="submit" class="btn btn-primary float-right" {{ $isFollow ? 'disabled="disabled"' : '' }}>
+                        {{ $isFollow ? 'Siguiendo' : 'Seguir' }}
+                    </button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -83,10 +92,54 @@
                 </div>
             </div>
             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                ...
+                <div class="row mt-2">
+                    @forelse ($user->followers as $seguidor)
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-center">
+                        <div class="thumbnail">
+                            <img src="{{ $seguidor->avatar }}" alt="">
+                            <div class="caption">
+                                <p>
+                                    <a href="{{ route('user.index', $seguidor->username) }}">{{ '@'.
+                                        $seguidor->username }}</a>
+                                </p>
+                                <!-- <p>
+                                    <a href="#" class="btn btn-primary">Action</a>
+                                    <a href="#" class="btn btn-default">Action</a>
+                                </p> -->
+                            </div>
+                        </div>
+                    </div>
+                    @empty
+                    <p>
+                        El usuario no tiene seguidores
+                    </p>
+                    @endforelse
+                </div>
             </div>
             <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-                ...
+                <div class="row mt-2">
+                    @forelse ($user->follows as $siguiendo)
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-center">
+                        <div class="thumbnail">
+                            <img src="{{ $siguiendo->avatar }}" alt="">
+                            <div class="caption">
+                                <p>
+                                    <a href="{{ route('user.index', $siguiendo->username) }}">{{ '@'.
+                                        $siguiendo->username }}</a>
+                                </p>
+                                <!-- <p>
+                                        <a href="#" class="btn btn-primary">Action</a>
+                                        <a href="#" class="btn btn-default">Action</a>
+                                    </p> -->
+                            </div>
+                        </div>
+                    </div>
+                    @empty
+                    <p>
+                        El usuario no tiene seguidores
+                    </p>
+                    @endforelse
+                </div>
             </div>
         </div>
     </div>
