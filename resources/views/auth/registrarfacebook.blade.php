@@ -2,12 +2,18 @@
 
 @section('content')
 <div class="row justify-content-center mt-2">
-    <div class="col-md-8">
+    <div class="col-md-12">
 
+        <!-- <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            <a href="#" class="thumbnail">
+                <img src="{{ $user->avatar }}" alt="">
+            </a>
+        </div> -->
+        
         <div class="card">
             <div class="card-header">Registro de usuario</div>
-
-            <img class="card-img-top" src="{{ $user->avatar }}" alt="">
+            
+            <!-- <img src="{{ $user->avatar }}" class="img-thumbnail" alt=""> -->
 
             <div class="card-body">
                 <form method="POST" action="{{ route('socialprofile.registrar') }}">
