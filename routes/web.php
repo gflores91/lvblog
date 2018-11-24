@@ -23,6 +23,6 @@ Route::post('/{username}/follow', 'UserController@FollowPost')->name('user.follo
 Route::post('/{username}/unfollow', 'UserController@UnFollowPost')->name('user.unfollowpost');
 Route::get('/auth/facebook', 'SocialProfileController@Facebook')->name('socialprofile.facebook');
 Route::get('/auth/facebook/callback', 'SocialProfileController@Callback')->name('socialprofile.callback');
-Route::get('/auth/facebook/registrar', 'SocialProfileController@Registrar')->name('socialprofile.registrar');
+Route::post('/auth/facebook/registrar', 'SocialProfileController@Registrar')->name('socialprofile.registrar');
 
 // Route::get('/home', 'HomeController@index')->name('home');
