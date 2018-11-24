@@ -69,4 +69,18 @@
         </div>
     </div>
 </div>
+
+
+<div class="row justify-content-center mt-2">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <p>
+            <strong>Tambien puedes iniciar sesión con tus redes sociales:</strong>
+        </p>
+        <p>
+            <a class="btn btn-primary" href="{{ route('socialprofile.facebook') }}" role="button">
+                <i class="fab fa-facebook-f"></i> Facebook
+            </a>
+        </p>
+    </div>
+</div>
 @endsection
