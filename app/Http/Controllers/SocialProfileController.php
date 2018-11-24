@@ -20,8 +20,6 @@ class SocialProfileController extends Controller
     {
         $user = Socialite::driver('facebook')->user();
 
-        dd('$user');
-
         $userExisting = User::whereHas('socialProfiles', function ($query) use ($user){
             $query->where('social_id', $user->id);
         })->first();
