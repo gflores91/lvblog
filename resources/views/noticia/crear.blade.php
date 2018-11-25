@@ -36,6 +36,8 @@
                     <input type="text" class="form-control" name="imagen" id="imagen" placeholder="Ingrese url de la imagen">
                 </div>
             </div>
+            <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+
             <div class="form-group row">
                 <div class="offset-md-4 col-md-3">
                     <button type="submit" class="btn btn-primary">Crear</button>

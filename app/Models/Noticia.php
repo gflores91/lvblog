@@ -10,6 +10,7 @@ class Noticia extends Model
         'titulo',
         'cuerpo',
         'imagen',
+        'user_id'
     ];
 
     public function user()

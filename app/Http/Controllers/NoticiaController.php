@@ -5,6 +5,7 @@ namespace lvblog\Http\Controllers;
 use Illuminate\Http\Request;
 
 use lvblog\Models\Noticia;
+use lvblog\Models\User;
 
 class NoticiaController extends Controller
 {
@@ -16,7 +17,8 @@ class NoticiaController extends Controller
     //
     public function Index()
     {
-        $noticias = Noticia::paginate(10);
+        $noticias = User::find(auth()->user()->id)->first()
+                    ->noticias()->paginate(10);
 
         return view('noticia.index', [
             'noticias' => $noticias
