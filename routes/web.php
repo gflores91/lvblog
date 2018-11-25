@@ -24,5 +24,6 @@ Route::post('/{username}/unfollow', 'UserController@UnFollowPost')->name('user.u
 Route::get('/auth/facebook', 'SocialProfileController@Facebook')->name('socialprofile.facebook');
 Route::get('/auth/facebook/callback', 'SocialProfileController@Callback')->name('socialprofile.callback');
 Route::post('/auth/facebook/registrar', 'SocialProfileController@Registrar')->name('socialprofile.registrar');
-
+Route::post('/{username}/dm', 'UserController@EnviarMensajePrivado')->name('user.enviarmensajeprivado');
+Route::get('/conversacion/{conversacion}', 'UserController@MostrarConversacion')->name('user.conversacion');
 // Route::get('/home', 'HomeController@index')->name('home');

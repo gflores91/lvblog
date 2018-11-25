@@ -32,12 +32,63 @@
                         {{ $user->email }}
                     </p>
                 </p>
-                <form action="{{ route($isFollowing ? 'user.unfollowpost' : 'user.followpost', $user->username) }}" method="post">
-                    @csrf
-                    <button type="submit" class="btn btn-primary float-right">
-                        {{ $isFollowing ? 'No seguir' : 'Seguir' }}
-                    </button>
-                </form>
+                <div class="row">
+                    <div class="col-md-12">
+                        @if(Gate::allows('dms', $user))
+                        <div class="col-md-6 float-right">
+
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#dmModal">
+                                Enviar DM
+                            </button>
+
+                            <div class="modal fade" id="dmModal" tabindex="-1" role="dialog" aria-labelledby="dmModal"
+                                aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Nuevo mensaje</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+
+                                        <form action="{{ route('user.enviarmensajeprivado', $user->username) }}" method="POST" >
+                                        @csrf
+                                        <div class="modal-body">
+                                                <!-- <div class="form-group">
+                                                    <label for="recipient-name" class="col-form-label">Para:</label>
+                                                    <input type="text" class="form-control" id="recipient-name">
+                                                </div> -->
+                                                <div class="form-group">
+                                                    <label for="message" class="col-form-label">Mensaje:</label>
+                                                    <textarea class="form-control" id="message" name="message"></textarea>
+                                                </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                            <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+                                        </div>
+                                    </form>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        @endif
+
+                        <div class="col-md-4">
+                            <form action="{{ route($isFollowing ? 'user.unfollowpost' : 'user.followpost', $user->username) }}"
+                                method="post">
+                                @csrf
+                                <button type="submit" class="btn btn-primary">
+                                    {{ $isFollowing ? 'No seguir' : 'Seguir' }}
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>

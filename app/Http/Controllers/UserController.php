@@ -5,6 +5,8 @@ namespace lvblog\Http\Controllers;
 use Illuminate\Http\Request;
 
 use lvblog\Models\User;
+use lvblog\Models\Conversation;
+use lvblog\Models\PrivateMessage;
 
 class UserController extends Controller
 {
@@ -51,6 +53,36 @@ class UserController extends Controller
 
         return redirect()->route('user.index', [
             'username' => $username,
+        ]);
+    }
+
+    public function EnviarMensajePrivado($username, Request $request)
+    {
+        $user = User::where('username', $username)->first();
+        $yo = $request->user();
+        $mensaje = $request->input('message');
+
+        $conversacion = Conversation::between($yo, $user);
+
+        $mensajePrivado = PrivateMessage::create(
+            [
+                'conversation_id' => $conversacion->id,
+                'user_id' => $yo->id,
+                'message' => $mensaje,
+            ]);
+
+        return redirect()->route('user.conversacion', [
+            'conversacion' => $conversacion->id,
+        ]);
+    }
+
+    public function MostrarConversacion(Conversation $conversacion)
+    {
+        $conversacion->load('users', 'privateMessages');
+
+        return view('user.conversacion', [
+            'conversacion' => $conversacion,
+            'user' => auth()->user(),
         ]);
     }
 }

@@ -5,6 +5,8 @@ namespace lvblog\Providers;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
+use lvblog\Models\User;
+
 class AuthServiceProvider extends ServiceProvider
 {
     /**
@@ -25,6 +27,10 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('dms', function(User $user, User $otheruser){
+            return
+                    $user->isFollowing($otheruser) &&
+                    $otheruser->isFollowing($user);
+        });
     }
 }
