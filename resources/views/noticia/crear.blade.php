@@ -15,8 +15,9 @@
 
 <div class="row container">
     <div class="col-md-12">
-        <form action="{{ route('noticia.crearpost') }}" method="POST">
+        <form action="{{ route('noticia.crearpost') }}" method="POST" enctype="multipart/form-data">
             @csrf
+            <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
             <div class="form-group row">
                 <label for="titulo" class="col-sm-4 col-form-label">Titulo de la noticia</label>
                 <div class="col-sm-8">
@@ -33,11 +34,13 @@
             <div class="form-group row">
                 <label for="imagen" class="col-sm-4 col-form-label">Imagen de la noticia</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" name="imagen" id="imagen" placeholder="Ingrese url de la imagen">
+                    <div class="form-group">
+                        <input type="file" class="form-control-file" name="imagen" id="imagen" placeholder=""
+                            aria-describedby="fileHelpId">
+                        <small id="fileHelpId" class="form-text text-muted">* Solo ingresar imágenes</small>
+                    </div>
                 </div>
             </div>
-            <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
-
             <div class="form-group row">
                 <div class="offset-md-4 col-md-3">
                     <button type="submit" class="btn btn-primary">Crear</button>

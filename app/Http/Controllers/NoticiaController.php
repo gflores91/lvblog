@@ -12,13 +12,13 @@ class NoticiaController extends Controller
     public function __construct()
     {
         $this->middleware('auth')
-        ->except('Detalle');
+            ->except('Detalle');
     }
     //
     public function Index()
     {
-        $noticias = User::find(auth()->user()->id)->first()
-                    ->noticias()->paginate(10);
+        $noticias = User::find(auth()->user()->id)
+                            ->noticias()->latest()->paginate(10);
 
         return view('noticia.index', [
             'noticias' => $noticias
@@ -32,7 +32,16 @@ class NoticiaController extends Controller
 
     public function CrearPost(Request $request)
     {
-        $noticia = Noticia::create($request->all());
+        $imagen = $request->file('imagen');
+
+        $noticia = Noticia::create([
+            'user_id' => $request->user()->id,
+            'titulo' => $request->titulo,
+            'cuerpo' => $request->cuerpo,
+            'imagen' => $imagen->store('noticias', 'public'),
+
+        ]);
+
         $noticia->save();
 
         return redirect()->back();
