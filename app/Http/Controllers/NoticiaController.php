@@ -12,7 +12,7 @@ class NoticiaController extends Controller
     public function __construct()
     {
         $this->middleware('auth')
-            ->except('Detalle');
+            ->except('Detalle', 'Buscar');
     }
     //
     public function Index()
@@ -53,6 +53,17 @@ class NoticiaController extends Controller
 
         return view('noticia.detalle', [
             'noticia' => $noticia
+        ]);
+    }
+
+    public function Buscar(Request $request)
+    {
+        $noticias = Noticia::with('user')
+                            ->where('cuerpo', 'Like', '%'. $request->input('query') .'%')
+                            ->paginate(10);
+
+        return view('noticia.buscar', [
+            'noticias' => $noticias,
         ]);
     }
 }

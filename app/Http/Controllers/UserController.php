@@ -18,7 +18,7 @@ class UserController extends Controller
     public function Index($username)
     {
         $user = User::where('username', $username)->first();
-        $noticias = $user->noticias()->paginate(10);
+        $noticias = $user->noticias()->with('user')->paginate(10);
         $isFollowing = auth()->user()->isFollowing($user);
 
 

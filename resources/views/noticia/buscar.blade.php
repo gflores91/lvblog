@@ -1,25 +1,10 @@
 @extends('layouts.master')
 
-
 @section('content')
-
-<div class="row">
-    <div class="col-md-12 mt-2">
-        <div class="jumbotron">
-            <div class="container">
-                <h1 class="display-4">Bienvenido a {{ env('APP_NAME') }}</h1>
-                <p class="lead">Este sitio tiene fines educativos para el aprendizaje personal del desarrollo en
-                    Laravel framework.
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row">
+<div class="row mt-2">
     <div class="col-md-12">
         <div class="page-header">
-            <h1>Lista de noticias</h1>
+          <h1>Resultados de la búsqueda</h1>
         </div>
     </div>
 </div>
@@ -39,5 +24,4 @@
 <div class="row mt-2">
     @include('noticia.noticia')
 </div>
-
 @endsection

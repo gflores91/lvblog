@@ -26,4 +26,4 @@ Route::get('/auth/facebook/callback', 'SocialProfileController@Callback')->name(
 Route::post('/auth/facebook/registrar', 'SocialProfileController@Registrar')->name('socialprofile.registrar');
 Route::post('/{username}/dm', 'UserController@EnviarMensajePrivado')->name('user.enviarmensajeprivado');
 Route::get('/conversacion/{conversacion}', 'UserController@MostrarConversacion')->name('user.conversacion');
-// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/noticias/search', 'NoticiaController@Buscar')->name('noticia.buscar');
