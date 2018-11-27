@@ -3,9 +3,12 @@
 namespace lvblog\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Noticia extends Model
 {
+    use Searchable;
+
     protected $fillable = [
         'titulo',
         'cuerpo',
@@ -25,5 +28,17 @@ class Noticia extends Model
         }
 
         return \Storage::disk('public')->url($imagen);
+    }
+
+    public function searchableAs()
+    {
+        return 'noticias_index';
+    }
+
+    public function toSearchableArray()
+    {
+        return array_merge($this->toArray(), [
+            'user' => $this->user
+        ]);
     }
 }

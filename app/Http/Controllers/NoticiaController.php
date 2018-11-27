@@ -58,9 +58,8 @@ class NoticiaController extends Controller
 
     public function Buscar(Request $request)
     {
-        $noticias = Noticia::with('user')
-                            ->where('cuerpo', 'Like', '%'. $request->input('query') .'%')
-                            ->paginate(10);
+        $noticias = Noticia::search($request->input('query'))->paginate(10);
+        $noticias->load('user');
 
         return view('noticia.buscar', [
             'noticias' => $noticias,
