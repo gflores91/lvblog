@@ -27,3 +27,4 @@ Route::post('/auth/facebook/registrar', 'SocialProfileController@Registrar')->na
 Route::post('/{username}/dm', 'UserController@EnviarMensajePrivado')->name('user.enviarmensajeprivado');
 Route::get('/conversacion/{conversacion}', 'UserController@MostrarConversacion')->name('user.conversacion');
 Route::get('/noticias/search', 'NoticiaController@Buscar')->name('noticia.buscar');
+Route::get('/api/noticias/{noticia}/comentarios', 'NoticiaController@Comentario')->name('noticia.comentario');

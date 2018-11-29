@@ -1,0 +1,11 @@
+<?php
+
+namespace lvblog\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Comment extends Model
+{
+    //
+    protected $guarded = [];
+}

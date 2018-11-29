@@ -65,4 +65,9 @@ class NoticiaController extends Controller
             'noticias' => $noticias,
         ]);
     }
+
+    public function Comentario(Noticia $noticia)
+    {
+        return $noticia->comments;
+    }
 }

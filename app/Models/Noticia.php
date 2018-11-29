@@ -41,4 +41,9 @@ class Noticia extends Model
             'user' => $this->user
         ]);
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class)->latest();
+    }
 }
