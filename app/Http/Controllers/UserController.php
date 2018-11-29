@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use lvblog\Models\User;
 use lvblog\Models\Conversation;
 use lvblog\Models\PrivateMessage;
+use lvblog\Notifications\UserFollower;
 
 class UserController extends Controller
 {
@@ -37,6 +38,8 @@ class UserController extends Controller
         $yo = $request->user();
 
         $yo->follows()->attach($user);
+
+        $user->notify(new UserFollower($yo));
 
         return redirect()->route('user.index', [
             'username' => $username,
