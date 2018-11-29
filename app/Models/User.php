@@ -57,4 +57,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(SocialProfile::class);
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class)->latest();
+    }
 }

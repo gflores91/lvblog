@@ -13907,7 +13907,7 @@ window.Vue = __webpack_require__(36);
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-Vue.component('example-component', __webpack_require__(39));
+Vue.component('comentarios-component', __webpack_require__(39));
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key)))
@@ -47219,7 +47219,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/js/components/ExampleComponent.vue"
+Component.options.__file = "resources/js/components/ComentariosComponent.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -47228,9 +47228,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-299e239e", Component.options)
+    hotAPI.createRecord("data-v-02b0d854", Component.options)
   } else {
-    hotAPI.reload("data-v-299e239e", Component.options)
+    hotAPI.reload("data-v-02b0d854", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -47371,11 +47371,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        console.log('Component mounted.');
+  props: ["noticia_id"],
+  data: function data() {
+    return {
+      comentarios: []
+    };
+  },
+
+  methods: {
+    load: function load() {
+      var _this = this;
+
+      axios.get("/api/noticias/" + this.noticia_id + "/comentarios").then(function (comentario) {
+        _this.comentarios = comentario.data;
+      });
     }
+  }
 });
 
 /***/ }),
@@ -47386,38 +47406,56 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card card-default" }, [
+  return _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "col-12 mt-2" }, [
+      _c("div", { staticClass: "col-12 text-center" }, [
+        _c(
+          "a",
+          {
+            staticClass: "btn btn-outline-primary",
+            attrs: { href: "#" },
+            on: { click: _vm.load }
+          },
+          [_vm._v("Ver comentarios")]
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-12 mt-2" },
+        _vm._l(_vm.comentarios, function(comentario) {
+          return _c("div", { staticClass: "card" }, [
             _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
+              _c("strong", [_vm._v("Escrito por:")]),
+              _vm._v(
+                "\n          @" +
+                  _vm._s(comentario.user.username) +
+                  "\n        "
+              )
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              )
+              _c("p", { staticClass: "card-text" }, [
+                _vm._v(_vm._s(comentario.message))
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-footer text-muted text-right" }, [
+              _vm._v("Escrito el: " + _vm._s(comentario.created_at))
             ])
           ])
-        ])
-      ])
+        })
+      )
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-299e239e", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-02b0d854", module.exports)
   }
 }
 

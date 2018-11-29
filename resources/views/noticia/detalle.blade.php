@@ -32,4 +32,7 @@
         </p>
     </div>
 </div>
+
+<comentarios-component :noticia_id="{{ $noticia->id }}"></comentarios-component>
+
 @endsection

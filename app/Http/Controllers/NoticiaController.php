@@ -68,6 +68,6 @@ class NoticiaController extends Controller
 
     public function Comentario(Noticia $noticia)
     {
-        return $noticia->comments;
+        return $noticia->comments->load('user');
     }
 }
