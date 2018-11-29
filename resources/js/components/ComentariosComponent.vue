@@ -6,7 +6,7 @@
       </div>
 
       <div class="col-12 mt-2">
-        <div class="card" v-for="comentario in comentarios">
+        <div class="card" v-for="comentario in comentarios" :key="comentario.id">
           <div class="card-header">
             <strong>Escrito por:</strong>
             @{{ comentario.user.username }}

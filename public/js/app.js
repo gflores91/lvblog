@@ -47424,7 +47424,7 @@ var render = function() {
         "div",
         { staticClass: "col-12 mt-2" },
         _vm._l(_vm.comentarios, function(comentario) {
-          return _c("div", { staticClass: "card" }, [
+          return _c("div", { key: comentario.id, staticClass: "card" }, [
             _c("div", { staticClass: "card-header" }, [
               _c("strong", [_vm._v("Escrito por:")]),
               _vm._v(
