@@ -70,4 +70,9 @@ class NoticiaController extends Controller
     {
         return $noticia->comments->load('user');
     }
+
+    public function Notificaciones(Request $request)
+    {
+        return $request->user()->notifications;
+    }
 }

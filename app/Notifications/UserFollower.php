@@ -33,7 +33,7 @@ class UserFollower extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -61,7 +61,7 @@ class UserFollower extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'follower' => $this->follower,
         ];
     }
 }

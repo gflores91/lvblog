@@ -33,8 +33,8 @@ export default {
     load() {
       axios
         .get("/api/noticias/" + this.noticia_id + "/comentarios")
-        .then(comentario => {
-          this.comentarios = comentario.data;
+        .then(respuesta => {
+          this.comentarios = respuesta.data;
         });
     }
   }
