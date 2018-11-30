@@ -173,7 +173,7 @@ return [
          */
         lvblog\Providers\AppServiceProvider::class,
         lvblog\Providers\AuthServiceProvider::class,
-        // lvblog\Providers\BroadcastServiceProvider::class,
+        lvblog\Providers\BroadcastServiceProvider::class,
         lvblog\Providers\EventServiceProvider::class,
         lvblog\Providers\RouteServiceProvider::class,
 

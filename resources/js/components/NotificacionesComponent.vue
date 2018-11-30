@@ -11,6 +11,9 @@
 
 <script>
 export default {
+    props: [
+        'user'
+    ],
   data() {
     return {
       notificaciones: []
@@ -19,6 +22,10 @@ export default {
   mounted() {
     axios.get("/api/notificaciones").then(respuesta => {
       this.notificaciones = respuesta.data;
+
+      Echo.private(`lvblog.Models.User.${this.user}`).notification(notificacion => {
+        this.notificaciones.unshift(notificacion);
+      });
     });
   }
 };
