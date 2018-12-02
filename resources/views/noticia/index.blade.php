@@ -5,7 +5,7 @@
 <div class="row">
     <div class="col-md-12 mt-2">
         <div class="page-header">
-            <h1>Listado de noticias</h1>
+            <h1>@lang('app.Title_news')</h1>
         </div>
     </div>
 </div>
@@ -14,7 +14,7 @@
 <div class="row">
     <div class="col-md-12 mt-2">
         <p>
-            <a href="{{ route('noticia.crear') }}">Crear nueva noticia</a>
+            <a href="{{ route('noticia.crear') }}">@lang('app.Create_news')</a>
         </p>
     </div>
 </div>
@@ -26,7 +26,7 @@
             <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Nombre</th>
+                    <th scope="col">@lang('app.Name')</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -36,13 +36,13 @@
                     <td scope="row">{{ $noticia->id }}</td>
                     <td> {{ $noticia->titulo }} </td>
                     <td>
-                        <a href="#">Editar</a> |
-                        <a href="{{ route('noticia.detalle', $noticia->id) }}">Detalle</a> |
-                        <a href="#">Eliminar</a>
+                        <a href="#">@lang('app.Edit')</a> |
+                        <a href="{{ route('noticia.detalle', $noticia->id) }}">@lang('app.Details')</a> |
+                        <a href="#">@lang('app.Delete')</a>
                     </td>
                 </tr>
                 @empty
-                    <p>No existen registros</p>
+                    <p>@lang('app.Empty')</p>
                 @endforelse
             </tbody>
         </table>

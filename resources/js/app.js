@@ -8,6 +8,21 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+import Vuex from 'vuex';
+import vuexI18n from 'vuex-i18n';
+import Locales from './vue-i18n-locales.generated.js';
+import LocalesEn from './langs/en.js';
+import LocalesEs from './langs/es.js';
+
+const store = new Vuex.Store();
+
+Vue.use(vuexI18n.plugin, store);
+
+Vue.i18n.add('en', LocalesEn);
+Vue.i18n.add('es', LocalesEs);
+
+// set the start locale to use
+Vue.i18n.set('es');
 
 /**
  * The following block of code may be used to automatically register your
@@ -30,5 +45,7 @@ Vue.component('notificaciones-component', require('./components/NotificacionesCo
  */
 
 const app = new Vue({
+    store,
+    //mixins: [require('spark')],
     el: '#app'
 });

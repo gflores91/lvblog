@@ -26,30 +26,39 @@
             <div class="collapse navbar-collapse" id="collapsibleNavId">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item {{ url()->current() == route('home.index') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('home.index') }}">Inicio <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{ route('home.index') }}">@lang('app.Home') <span class="sr-only">(current)</span></a>
                     </li>
                     @if(auth()->check())
                     <li class="nav-item {{ url()->current() == route('noticia.index') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('noticia.index') }}">Noticias <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{ route('noticia.index') }}">@lang('app.News') <span class="sr-only">(current)</span></a>
                     </li>
                     @endif
                 </ul>
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
+                    @if(app()->getLocale() == 'es')
+                    <li class="nav-item">
+                        <a class="nav-link" href="/locale?lang=en">English</a>
+                    </li>
+                    @else
+                    <li class="nav-item">
+                        <a class="nav-link" href="/locale?lang=es">Español</a>
+                    </li>
+                    @endif
                     <!-- Authentication Links -->
                     @guest
                     <li class="nav-item {{ url()->current() == route('login') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('login') }}">Iniciar sesión</a>
+                        <a class="nav-link" href="{{ route('login') }}">@lang('app.Login')</a>
                     </li>
                     <li class="nav-item {{ url()->current() == route('register') ? 'active' : '' }}">
                         @if (Route::has('register'))
-                        <a class="nav-link" href="{{ route('register') }}">Registrar cuenta</a>
+                        <a class="nav-link" href="{{ route('register') }}">@lang('app.Register')</a>
                         @endif
                     </li>
                     @else
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                            aria-expanded="false">Notificaciones
+                            aria-expanded="false">@lang('app.Notifications')
                             <span class="bagde badge-primary">{{ auth()->user()->notifications->count() }}</span>
                         </a>
                         <notificaciones-component :user="{{ auth()->user()->id }}"></notificaciones-component>
@@ -63,7 +72,7 @@
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                                  document.getElementById('logout-form').submit();">
-                                Cerrar sesión
+                                @lang('app.Logout')
                             </a>
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -84,6 +93,9 @@
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="{{ mix('js/app.js') }}"></script>
+
+
+
 </body>
 
 </html>

@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-12 mt-2">
       <div class="col-12 text-center">
-        <a href="#" class="btn btn-outline-primary" v-on:click="load">Ver comentarios</a>
+        <a href="#" class="btn btn-outline-primary" v-on:click="load">{{ $t('app.Read_more', 'en') }}</a>
       </div>
 
       <div class="col-12 mt-2">
@@ -26,7 +26,8 @@ export default {
   props: ["noticia_id"],
   data() {
     return {
-      comentarios: []
+    locale: 'es',
+      comentarios: [],
     };
   },
   methods: {
@@ -36,7 +37,7 @@ export default {
         .then(respuesta => {
           this.comentarios = respuesta.data;
         });
-    }
+    },
   }
 };
 </script>

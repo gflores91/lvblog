@@ -14,6 +14,7 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@Index')->name('home.index');
+Route::get('/locale', 'HomeController@Locale')->name('home.locale');
 Route::get('/noticia', 'NoticiaController@Index')->name('noticia.index');
 Route::get('/noticia/detalle/{id}', 'NoticiaController@Detalle')->name('noticia.detalle');
 Route::get('/noticia/crear', 'NoticiaController@Crear')->name('noticia.crear');

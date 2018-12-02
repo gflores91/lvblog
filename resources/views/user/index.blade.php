@@ -6,7 +6,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="page-header">
-            <h1>Perfil de usuario <small>{{ $user->username }}</small></h1>
+            <h1>@lang('app.Perfil') <small>{{ $user->username }}</small></h1>
         </div>
     </div>
 </div>
@@ -24,11 +24,11 @@
             <div class="card-body">
                 <p class="card-text">
                     <p>
-                        <strong>Nombre: </strong>
+                        <strong>@lang('app.Name'): </strong>
                         {{ $user->name }}
                     </p>
                     <p>
-                        <strong>Email: </strong>
+                        <strong>@lang('app.Email'): </strong>
                         {{ $user->email }}
                     </p>
                 </p>
@@ -38,7 +38,7 @@
                         <div class="col-md-6 float-right">
 
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#dmModal">
-                                Enviar DM
+                                @lang('app.Send_dm')
                             </button>
 
                             <div class="modal fade" id="dmModal" tabindex="-1" role="dialog" aria-labelledby="dmModal"
@@ -46,7 +46,7 @@
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Nuevo mensaje</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">@lang('app.New_message')</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -56,17 +56,17 @@
                                         @csrf
                                         <div class="modal-body">
                                                 <!-- <div class="form-group">
-                                                    <label for="recipient-name" class="col-form-label">Para:</label>
+                                                    <label for="recipient-name" class="col-form-label">@lang('app.For'):</label>
                                                     <input type="text" class="form-control" id="recipient-name">
                                                 </div> -->
                                                 <div class="form-group">
-                                                    <label for="message" class="col-form-label">Mensaje:</label>
+                                                    <label for="message" class="col-form-label">@lang('app.Message'):</label>
                                                     <textarea class="form-control" id="message" name="message"></textarea>
                                                 </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                            <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('app.Close')</button>
+                                            <button type="submit" class="btn btn-primary">@lang('app.Send_message')</button>
                                         </div>
                                     </form>
 
@@ -82,7 +82,7 @@
                                 method="post">
                                 @csrf
                                 <button type="submit" class="btn btn-primary">
-                                    {{ $isFollowing ? 'No seguir' : 'Seguir' }}
+                                    {{ $isFollowing ? @lang('app.Unfollow') : @lang('app.Follow') }}
                                 </button>
                             </form>
                         </div>
@@ -100,11 +100,11 @@
         <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
-                    aria-controls="nav-home" aria-selected="true">Noticias</a>
+                    aria-controls="nav-home" aria-selected="true">@lang('app.News')</a>
                 <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
-                    aria-controls="nav-profile" aria-selected="false">Seguidores</a>
+                    aria-controls="nav-profile" aria-selected="false">@lang('app.Followers')</a>
                 <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
-                    aria-controls="nav-contact" aria-selected="false">Siguiendo</a>
+                    aria-controls="nav-contact" aria-selected="false">@lang('app.Following')</a>
             </div>
         </nav>
         <div class="tab-content" id="nav-tabContent">
@@ -116,22 +116,22 @@
                             <img class="card-img-top" src="{{ $noticia->imagen }}" alt="Card image cap">
                             <div class="card-body">
                                 <p class="text-muted">
-                                    Posteado por: <a href="#">{{ $noticia->user->username }}</a>
+                                    @lang('app.Posted') <a href="#">{{ $noticia->user->username }}</a>
                                 </p>
                                 <h5 class="card-title">{{ $noticia->titulo }}</h5>
                                 <p class="card-text">{{ $noticia->cuerpo }}</p>
                                 <p class="card-text">
-                                    <small class="text-muted">Posteado el: {{ $noticia->created_at }}</small>
+                                    <small class="text-muted">@lang('app.Date_post') {{ $noticia->created_at }}</small>
                                 </p>
                                 <p class="float-right">
-                                    <a href="{{ route('noticia.detalle', $noticia->id) }}" class="text-right">Leer más</a>
+                                    <a href="{{ route('noticia.detalle', $noticia->id) }}" class="text-right">@lang('app.Read_more')</a>
                                 </p>
                             </div>
                         </div>
                     </div>
                     @empty
                     <p>
-                        El usuario no ha creado noticias
+                        @lang('app.Empty')
                     </p>
                     @endforelse
 
@@ -162,7 +162,7 @@
                     </div>
                     @empty
                     <p>
-                        El usuario no tiene seguidores
+                        @lang('app.Empty')
                     </p>
                     @endforelse
                 </div>
@@ -187,7 +187,7 @@
                     </div>
                     @empty
                     <p>
-                        El usuario no tiene seguidores
+                        @lang('app.Empty')
                     </p>
                     @endforelse
                 </div>
@@ -195,8 +195,4 @@
         </div>
     </div>
 </div>
-
-
-
-
 @endsection

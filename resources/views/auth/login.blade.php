@@ -4,14 +4,14 @@
 <div class="row justify-content-center mt-2">
     <div class="col-md-10">
         <div class="card">
-            <div class="card-header">Inicio de sesión</div>
+            <div class="card-header">@lang('app.Title_login')</div>
 
             <div class="card-body">
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
 
                     <div class="form-group row">
-                        <label for="email" class="col-sm-4 col-form-label text-md-right">Email</label>
+                        <label for="email" class="col-sm-4 col-form-label text-md-right">@lang('app.Email')</label>
 
                         <div class="col-md-6">
                             <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
@@ -26,7 +26,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                        <label for="password" class="col-md-4 col-form-label text-md-right">@lang('app.Password')</label>
 
                         <div class="col-md-6">
                             <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
@@ -47,7 +47,7 @@
                                     {{ old('remember') ? 'checked' : '' }}>
 
                                 <label class="form-check-label" for="remember">
-                                    Recordarme
+                                    @lang('app.Remember')
                                 </label>
                             </div>
                         </div>
@@ -56,11 +56,11 @@
                     <div class="form-group row mb-0">
                         <div class="col-md-8 offset-md-4">
                             <button type="submit" class="btn btn-primary">
-                                Iniciar sesión
+                                @lang('app.Login_button')
                             </button>
 
                             <a class="btn btn-link" href="{{ route('password.request') }}">
-                                ¿Olvidaste tu contraseña?
+                                @lang('app.Forget_password')
                             </a>
                         </div>
                     </div>
@@ -74,7 +74,7 @@
 <div class="row justify-content-center mt-2">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <p>
-            <strong>Tambien puedes iniciar sesión con tus redes sociales:</strong>
+            <strong>@lang('app.Social_login')</strong>
         </p>
         <p>
             <a class="btn btn-primary" href="{{ route('socialprofile.facebook') }}" role="button">

@@ -15,8 +15,8 @@
 
 <div class="row">
     <div class="col-md-12">
-        <strong>Posteado por:</strong> <a href="#"> {{ $noticia->user->username }}</a> |
-        Fecha: {{ $noticia->created_at }}
+        <strong>@lang('app.Posted')</strong> <a href="#"> {{ $noticia->user->username }}</a> |
+        @lang('app.Date_post') {{ $noticia->created_at }}
     </div>
 </div>
 

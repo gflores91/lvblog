@@ -16,7 +16,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth')
-                ->except('Index');
+                ->except('Index', 'Locale');
     }
 
     /**
@@ -31,6 +31,13 @@ class HomeController extends Controller
         return view('home.index', [
             'noticias' => $noticias
         ]);
+    }
+
+    public function Locale(Request $request)
+    {
+        session()->put('locale', $request->input('lang'));
+
+        return back();
     }
 
 }
