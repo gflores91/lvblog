@@ -82,7 +82,7 @@
                                 method="post">
                                 @csrf
                                 <button type="submit" class="btn btn-primary">
-                                    {{ $isFollowing ? @lang('app.Unfollow') : @lang('app.Follow') }}
+                                    {{ $isFollowing ? __('app.Unfollow') : __('app.Follow') }}
                                 </button>
                             </form>
                         </div>
